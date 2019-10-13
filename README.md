@@ -1,4 +1,7 @@
-Exercises from Cracking the code interview book
-===============================================
+Some katas for fun
+==================
 
-- Chapter 1 written in golang
+I will be writing some code for learning different languages, here you'll find
+some golang, python, javascript, etc.
+
+I am using some data structures, algorithms and exercises to learn
