@@ -6,12 +6,12 @@ import (
 )
 
 type Node struct {
-    Next *Node
-    Data int8
+	Next *Node
+	Data int8
 }
 
 func (n Node) Show() {
-    fmt.Printf("->%d", n.Data)
+	fmt.Printf("->%d", n.Data)
 }
 
 func (n Node) AsString() string {
@@ -19,19 +19,19 @@ func (n Node) AsString() string {
 }
 
 type List struct {
-    Head *Node
+	Head *Node
 }
 
 type LinkedList interface {
-    AddElement(i int8)
-    RemoveElement(i int8)
-    RemoveAllOcurrencesOfElement(i int8)
+	AddElement(i int8)
+	RemoveElement(i int8)
+	RemoveAllOcurrencesOfElement(i int8)
 	AsString() string
-    Show()
+	Show()
 }
 
 func (l *List) AddElement(i int8) {
-    node := Node{nil, i}
+	node := Node{nil, i}
 	if l.Head != nil {
 		runner := l.Head
 		for runner.Next != nil {
@@ -45,34 +45,34 @@ func (l *List) AddElement(i int8) {
 }
 
 func (l *List) RemoveElement(i int8) {
-    runner := l.Head
-    aux := l.Head
+	runner := l.Head
+	aux := l.Head
 
-    for runner.Next != nil {
-        if runner.Data == i {
-            aux.Next = runner.Next
-            break
-        }
-        aux = runner
-        runner = runner.Next
-    }
+	for runner.Next != nil {
+		if runner.Data == i {
+			aux.Next = runner.Next
+			break
+		}
+		aux = runner
+		runner = runner.Next
+	}
 }
 
 func (l *List) RemoveAllOcurrencesOfElement(i int8) {
-    for l.Head.Data == i {
-        l.Head = l.Head.Next
-    }
-    runner := l.Head
-    laux := l.Head
-    for runner != nil {
-       if runner.Data == i {
-           laux.Next = runner.Next
-           runner = runner.Next
-       } else {
-           laux = runner
-           runner = runner.Next
-       }
-    }
+	for l.Head.Data == i {
+		l.Head = l.Head.Next
+	}
+	runner := l.Head
+	laux := l.Head
+	for runner != nil {
+		if runner.Data == i {
+			laux.Next = runner.Next
+			runner = runner.Next
+		} else {
+			laux = runner
+			runner = runner.Next
+		}
+	}
 }
 
 func (l List) AsString() string {

@@ -19,6 +19,6 @@ func TestRemoveElement(t *testing.T) {
 	list.RemoveElement(2)
 
 	if list.Head.Next.Data == 2 {
-		t.Errorf("%d element not expected" , list.Head.Next.Data)
+		t.Errorf("%d element not expected", list.Head.Next.Data)
 	}
 }
