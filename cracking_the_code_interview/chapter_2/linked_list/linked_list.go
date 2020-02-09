@@ -6,20 +6,20 @@ import (
 )
 
 type Node struct {
-    next *Node
-    data int8
+    Next *Node
+    Data int8
 }
 
 func (n Node) Show() {
-    fmt.Printf("->%d", n.data)
+    fmt.Printf("->%d", n.Data)
 }
 
 func (n Node) AsString() string {
-	return fmt.Sprintf("%d", n.data)
+	return fmt.Sprintf("%d", n.Data)
 }
 
 type List struct {
-    head *Node
+    Head *Node
 }
 
 type LinkedList interface {
@@ -32,54 +32,54 @@ type LinkedList interface {
 
 func (l *List) AddElement(i int8) {
     node := Node{nil, i}
-	if l.head != nil {
-		runner := l.head
-		for runner.next != nil {
-			runner = runner.next
+	if l.Head != nil {
+		runner := l.Head
+		for runner.Next != nil {
+			runner = runner.Next
 		}
-		runner.next = &node
+		runner.Next = &node
 	} else {
-		node.next = l.head
-		l.head = &node
+		node.Next = l.Head
+		l.Head = &node
 	}
 }
 
 func (l *List) RemoveElement(i int8) {
-    runner := l.head
-    aux := l.head
+    runner := l.Head
+    aux := l.Head
 
-    for runner.next != nil {
-        if runner.data == i {
-            aux.next = runner.next
+    for runner.Next != nil {
+        if runner.Data == i {
+            aux.Next = runner.Next
             break
         }
         aux = runner
-        runner = runner.next
+        runner = runner.Next
     }
 }
 
 func (l *List) RemoveAllOcurrencesOfElement(i int8) {
-    for l.head.data == i {
-        l.head = l.head.next
+    for l.Head.Data == i {
+        l.Head = l.Head.Next
     }
-    runner := l.head
-    laux := l.head
+    runner := l.Head
+    laux := l.Head
     for runner != nil {
-       if runner.data == i {
-           laux.next = runner.next
-           runner = runner.next
+       if runner.Data == i {
+           laux.Next = runner.Next
+           runner = runner.Next
        } else {
            laux = runner
-           runner = runner.next
+           runner = runner.Next
        }
     }
 }
 
 func (l List) AsString() string {
 	var listStr strings.Builder
-	for l.head != nil {
-		listStr.WriteString(fmt.Sprintf("%s->", l.head.AsString()))
-		l.head = l.head.next
+	for l.Head != nil {
+		listStr.WriteString(fmt.Sprintf("%s->", l.Head.AsString()))
+		l.Head = l.Head.Next
 	}
 	listStr.WriteString("nil")
 

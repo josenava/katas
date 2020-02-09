@@ -6,8 +6,8 @@ func TestAddElement(t *testing.T) {
 	list := List{}
 	list.AddElement(4)
 
-	if list.head.data != 4 {
-		t.Errorf("%d, was not expected", list.head.data)
+	if list.Head.Data != 4 {
+		t.Errorf("%d, was not expected", list.Head.Data)
 	}
 }
 
@@ -18,7 +18,7 @@ func TestRemoveElement(t *testing.T) {
 	list.AddElement(3)
 	list.RemoveElement(2)
 
-	if list.head.next.data == 2 {
-		t.Errorf("%d element not expected" , list.head.next.data)
+	if list.Head.Next.Data == 2 {
+		t.Errorf("%d element not expected" , list.Head.Next.Data)
 	}
 }
