@@ -1,4 +1,4 @@
-package main
+package linked_list
 
 import "fmt"
 
@@ -18,6 +18,7 @@ type List struct {
 type LinkedList interface {
     AddElement(i int8)
     RemoveElement(i int8)
+    RemoveAllOcurrencesOfElement(i int8)
     Show()
 }
 
@@ -28,6 +29,20 @@ func (l *List) AddElement(i int8) {
 }
 
 func (l *List) RemoveElement(i int8) {
+    runner := l.head
+    aux := l.head
+
+    for runner.next != nil {
+        if runner.data == i {
+            aux.next = runner.next
+            break
+        }
+        aux = runner
+        runner = runner.next
+    }
+}
+
+func (l *List) RemoveAllOcurrencesOfElement(i int8) {
     for l.head.data == i {
         l.head = l.head.next
     }
@@ -51,13 +66,13 @@ func (l List) Show() {
     }
 }
 
-func main() {
-    l := List{}
-    l.AddElement(7)
-    l.AddElement(15)
-    l.AddElement(7)
-    l.AddElement(102)
-    l.AddElement(7)
-    l.RemoveElement(7)
-    l.Show()
-}
+// func main() {
+//     l := List{}
+//     l.AddElement(7)
+//     l.AddElement(15)
+//     l.AddElement(7)
+//     l.AddElement(102)
+//     l.AddElement(7)
+//     l.RemoveAllOcurrencesOfElement(7)
+//     l.Show()
+// }
