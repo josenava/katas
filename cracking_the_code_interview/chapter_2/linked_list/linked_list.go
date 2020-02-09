@@ -1,6 +1,9 @@
 package linked_list
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type Node struct {
     next *Node
@@ -11,6 +14,10 @@ func (n Node) Show() {
     fmt.Printf("->%d", n.data)
 }
 
+func (n Node) asString() string {
+	return fmt.Sprintf("%d", n.data)
+}
+
 type List struct {
     head *Node
 }
@@ -19,6 +26,7 @@ type LinkedList interface {
     AddElement(i int8)
     RemoveElement(i int8)
     RemoveAllOcurrencesOfElement(i int8)
+	asString() string
     Show()
 }
 
@@ -59,11 +67,18 @@ func (l *List) RemoveAllOcurrencesOfElement(i int8) {
     }
 }
 
+func (l List) asString() string {
+	var listStr strings.Builder
+	for l.head != nil {
+		listStr.WriteString(fmt.Sprintf("%s->", l.head.asString()))
+	}
+	listStr.WriteString("nil")
+
+	return listStr.String()
+}
+
 func (l List) Show() {
-    for l.head != nil {
-        l.head.Show()
-        l.head = l.head.next
-    }
+	fmt.Print(l.asString())
 }
 
 // func main() {
