@@ -14,7 +14,7 @@ func (n Node) Show() {
     fmt.Printf("->%d", n.data)
 }
 
-func (n Node) asString() string {
+func (n Node) AsString() string {
 	return fmt.Sprintf("%d", n.data)
 }
 
@@ -26,14 +26,22 @@ type LinkedList interface {
     AddElement(i int8)
     RemoveElement(i int8)
     RemoveAllOcurrencesOfElement(i int8)
-	asString() string
+	AsString() string
     Show()
 }
 
 func (l *List) AddElement(i int8) {
     node := Node{nil, i}
-    node.next = l.head
-    l.head = &node
+	if l.head != nil {
+		runner := l.head
+		for runner.next != nil {
+			runner = runner.next
+		}
+		runner.next = &node
+	} else {
+		node.next = l.head
+		l.head = &node
+	}
 }
 
 func (l *List) RemoveElement(i int8) {
@@ -67,10 +75,11 @@ func (l *List) RemoveAllOcurrencesOfElement(i int8) {
     }
 }
 
-func (l List) asString() string {
+func (l List) AsString() string {
 	var listStr strings.Builder
 	for l.head != nil {
-		listStr.WriteString(fmt.Sprintf("%s->", l.head.asString()))
+		listStr.WriteString(fmt.Sprintf("%s->", l.head.AsString()))
+		l.head = l.head.next
 	}
 	listStr.WriteString("nil")
 
@@ -78,7 +87,7 @@ func (l List) asString() string {
 }
 
 func (l List) Show() {
-	fmt.Print(l.asString())
+	fmt.Print(l.AsString())
 }
 
 // func main() {
