@@ -40,5 +40,6 @@ class Stack:
         stack_value = "|"
         while aux is not None:
             stack_value += f"<-{str(aux.data)}"
+            aux = aux.next
 
         return f"Stack({stack_value})"
